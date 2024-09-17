@@ -39,7 +39,7 @@ var_dump($apakahSiswaSudahUjian);
 // 4
 $namaLengkap2 = $namaDepan .
 
-$namaDepan = "Ibnu";
+    $namaDepan = "Ibnu";
 $namaBelakang = 'Jakaria';
 
 $namaLengkap = "{$namaDepan} {$namaBelakang}";
@@ -53,4 +53,3 @@ echo $namaLengkap;
 // 5
 $listMahasiswa = ["Wahid Abdullah", "Elmo Bachtiar", "Lendis Fabri"];
 echo $listMahasiswa[0];
-?>
