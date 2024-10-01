@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slide Show</title>
+    <link rel="stylesheet" href="../css/styleSlideShow.css" type="text/css" />
+    <script src="../js/jquery-3.7.1.js" type="text/javascript"></script>
+    <script>
+      var i = 0;
+
+      $(document).ready(function () {
+        $(".sliderTitle, #slider img").hide();
+        showNextImage();
+        setInterval("showNextImage()", 3000);
+      });
+
+      function showNextImage() {
+        i++;
+        $("#sliderImage" + i)
+          .appendTo("#slider")
+          .fadeIn(1100)
+          .delay(1100)
+          .fadeOut(1100);
+        $("#title" + i)
+          .appendTo("#slider")
+          .fadeIn(1100)
+          .delay(1100)
+          .fadeOut(1100);
+        if (i == 3) {
+          i = 0;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="slider">
+      <img id="sliderImagel" src="../img/gambar1.jpg" />
+      <div class="slidertitle" id="titlel">Gambarl</div>
+
+      <img id="sliderImage2" src="../img/gambar2.jpg" />
+      <div class="slidertitle" id="title2">Gambar2</div>
+
+      <img id="sliderImage3" src="../img/gambar3.jpg" />
+      <div class="slidertitle" id="title3">Gambar3</div>
+    </div>
+  </body>
+</html>
