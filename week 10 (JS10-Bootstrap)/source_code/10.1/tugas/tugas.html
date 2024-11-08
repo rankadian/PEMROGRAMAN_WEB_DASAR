@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Bootstrap</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">MyWebsite</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#tentang">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#layanan">Layanan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#kontak">Kontak</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid text-center bg-primary text-white">
+      <div class="container">
+        <h1 class="display-4">Selamat Datang</h1>
+        <p class="lead">Ini adalah contoh website menggunakan Bootstrap</p>
+        <button class="btn btn-light btn-lg">Pelajari Lebih Lanjut</button>
+      </div>
+    </div>
+
+    <!-- Card Section -->
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="../tugas/download (3).jpeg"
+              class="card-img-top"
+              alt="Card image 1"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Gambar 1</h5>
+              <p class="card-text">Kucing yang memberikan jempol untuk anda.</p>
+              <a href="#" class="btn btn-primary">Selengkapnya</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="../tugas/Funny End of Presentation ANY QUESTIONS_  Meme Generator at MemeCreator_org!.jpeg"
+              class="card-img-top"
+              alt="Card image 2"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Gambar 2</h5>
+              <p class="card-text">Apakah ada pertanyaan untuk kucing ini?.</p>
+              <a href="#" class="btn btn-primary">Selengkapnya</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img
+              src="../tugas/download (3).jpeg"
+              class="card-img-top"
+              alt="Card image 3"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Gambar 3</h5>
+              <p class="card-text">Kucing yang memberikan jempol untuk anda.</p>
+              <a href="#" class="btn btn-primary">Selengkapnya</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="container-fluid bg-light py-5" id="kontak">
+      <div class="container">
+        <h2 class="text-center mb-4">Hubungi Kami</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form>
+              <div class="form-group">
+                <label for="nama">Nama</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nama"
+                  placeholder="Masukkan nama Anda"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Masukkan email Anda"
+                />
+              </div>
+              <div class="form-group">
+                <label for="pesan">Pesan</label>
+                <textarea
+                  class="form-control"
+                  id="pesan"
+                  rows="3"
+                  placeholder="Tulis pesan Anda"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
