@@ -259,12 +259,8 @@ include 'auth.php';
                     <td><?php echo $alamat; ?></td>
                     <td><?php echo $no_telp; ?></td>
                     <td>
-                        <button id="<?php echo $id; ?>" class="btn btn-success btn-sm edit_data">
-                            <i class="fa fa-edit"></i> Edit
-                        </button>
-                        <button id="<?php echo $id; ?>" class="btn btn-danger btn-sm hapus_data">
-                            <i class="fa fa-trash"></i> Hapus
-                        </button>
+                        <button id="<?php echo $id; ?>" class="btn btn-success btn-sm edit_data"> <i class="fa fa-edit"></i> Edit</button>
+                        <button id="<?php echo $id; ?>" class="btn btn-danger btn-sm hapus_data"> <i class="fa fa-trash"></i> Hapus</button>
                     </td>
                 </tr>
             <?php
@@ -313,7 +309,7 @@ include 'auth.php';
                 document.getElementById("nama").value = response.nama;
                 document.getElementById("alamat").value = response.alamat;
                 document.getElementById("no_telp").value = response.no_telp;
-                if (response.jenis_kelamin === "L") {
+                if (response.jenis_kelamin == "L") {
                     document.getElementById("jenkel1").checked = true;
                 } else {
                     document.getElementById("jenkel2").checked = true;
@@ -327,20 +323,18 @@ include 'auth.php';
 
     $(document).on('click', '.hapus_data', function() {
         var id = $(this).attr('id');
-        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-            $.ajax({
-                type: 'POST',
-                url: 'hapus_data.php',
-                data: {
-                    id: id
-                },
-                success: function() {
-                    $('.data').load('data.php');
-                },
-                error: function(response) {
-                    console.log(response.responseText);
-                }
-            });
-        }
+        $.ajax({
+            type: 'POST',
+            url: 'hapus_data.php',
+            data: {
+                id: id
+            },
+            success: function() {
+                $('.data').load("data.php");
+            },
+            error: function(response) {
+                console.log(response.responseText);
+            }
+        });
     });
 </script>
