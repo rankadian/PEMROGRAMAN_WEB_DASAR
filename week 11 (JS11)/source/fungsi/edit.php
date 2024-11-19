@@ -1,78 +1,52 @@
 <?php
 session_start();
-if (!empty($_SESSION['username'])) {
-    require '../config/koneksi.php';
-    require '../fungsi/pesan_kilat.php';
-    require '../fungsi/anti_injection.php';
 
-    // Check if editing anggota
-    if (!empty($_GET['anggota']) && $_GET['anggota'] === 'edit') {
-        // Retrieve and sanitize form data
-        $user_id = antiInjection($koneksi, $_POST['id']);
-        $username = antiInjection($koneksi, $_POST['username']);
-        $nama = antiInjection($koneksi, $_POST['nama']);
-        $jabatan = antiInjection($koneksi, $_POST['jabatan']);
-        $jenis_kelamin = antiInjection($koneksi, $_POST['jenis_kelamin']);
-        $alamat = antiInjection($koneksi, $_POST['alamat']);
-        $no_telp = isset($_POST['no_tel']) ? antiInjection($koneksi, $_POST['no_tel']) : ''; // Set to empty if no_tel not in POST
+if (empty($_SESSION['username'])) {
+    header("Location: ../index.php");
+    exit;
+}
 
-        // Check if `no_tel` column exists in `anggota` table
-        $result = mysqli_query($koneksi, "SHOW COLUMNS FROM anggota LIKE 'no_tel'");
-        $has_no_tel_column = mysqli_num_rows($result) > 0;
+require '../config/koneksi.php';
+require '../fungsi/pesan_kilat.php';
+require '../fungsi/anti_injection.php';
 
-        // Construct the anggota update query based on column existence
-        $query_anggota = "UPDATE anggota SET 
-                          nama = '$nama', 
-                          jenis_kelamin = '$jenis_kelamin', 
-                          alamat = '$alamat', 
-                          jabatan_id = '$jabatan'";
+// Aktifkan debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-        if ($has_no_tel_column) {
-            $query_anggota .= ", no_tel = '$no_telp'";
-        }
+if (!empty($_GET['jabatan']) && $_GET['jabatan'] === 'edit') {
+    // Ambil data dari form
+    $id = antiInjection($koneksi, $_POST['id']);
+    $jabatan = antiInjection($koneksi, $_POST['jabatan']);
+    $keterangan = antiInjection($koneksi, $_POST['keterangan']);
 
-        $query_anggota .= " WHERE user_id = '$user_id'";
-
-        // Execute the anggota update query
-        if (mysqli_query($koneksi, $query_anggota)) {
-            // Update password if provided
-            if (!empty($_POST['password'])) {
-                $password = $_POST['password'];
-                $salt = bin2hex(random_bytes(6));
-                $combined_password = $salt . $password;
-                $hashed_password = password_hash($combined_password, PASSWORD_BCRYPT);
-
-                // Update user table with new username, hashed password, and salt
-                $query_user = "UPDATE user SET 
-                               username = '$username', 
-                               password = '$hashed_password', 
-                               salt = '$salt' 
-                               WHERE id = '$user_id'";
-
-                if (mysqli_query($koneksi, $query_user)) {
-                    pesan('success', 'Anggota dan Password Berhasil Diperbarui.');
-                } else {
-                    pesan('warning', 'Data Anggota Diperbarui, tetapi Gagal Memperbarui Password: ' . mysqli_error($koneksi));
-                }
-            } else {
-                // Only update username if password is not provided
-                $query_user = "UPDATE user SET username = '$username' WHERE id = '$user_id'";
-
-                if (mysqli_query($koneksi, $query_user)) {
-                    pesan('success', 'Anggota Berhasil Diperbarui.');
-                } else {
-                    pesan('warning', 'Data Anggota Diperbarui, tetapi Gagal Memperbarui Username: ' . mysqli_error($koneksi));
-                }
-            }
-        } else {
-            pesan('danger', 'Gagal Memperbarui Anggota: ' . mysqli_error($koneksi));
-        }
-
-        // Redirect to anggota page after update
-        header('Location: ../index.php?page=anggota');
+    // Validasi data
+    if (empty($id) || empty($jabatan)) {
+        pesan('danger', "ID dan Nama Jabatan tidak boleh kosong.");
+        header("Location: ../index.php?page=jabatan");
         exit;
     }
+
+    // Query untuk update data jabatan
+    $query = "UPDATE jabatan SET 
+              jabatan = '$jabatan', 
+              keterangan = '$keterangan' 
+              WHERE id = '$id'";
+
+    // Eksekusi query
+    if (mysqli_query($koneksi, $query)) {
+        pesan('success', "Jabatan berhasil diperbarui.");
+    } else {
+        pesan('danger', "Gagal memperbarui jabatan: " . mysqli_error($koneksi));
+    }
+
+    // Redirect ke halaman jabatan
+    header("Location: ../index.php?page=jabatan");
+    exit;
 } else {
-    header('Location: ../index.php'); // Redirect to login if not authenticated
+    // Jika akses tidak valid
+    pesan('danger', "Akses tidak valid.");
+    header("Location: ../index.php?page=jabatan");
     exit;
 }
