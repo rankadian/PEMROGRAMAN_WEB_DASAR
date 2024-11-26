@@ -58,7 +58,7 @@ if ($session->get('is_login') !== true) {
                     include('pages/dashboard.php');
                     break;
                 case 'buku':
-                    include('model/Buku.php');
+                    include('pages/Buku.php');
                     break;
                 case 'kategori':
                     include('pages/kategori.php');
