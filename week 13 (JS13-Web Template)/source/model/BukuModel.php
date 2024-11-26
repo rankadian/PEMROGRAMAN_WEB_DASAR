@@ -15,8 +15,8 @@ class BukuModel extends Model
 
     public function insertData($data)
     {
-        $query = $this->db->prepare("INSERT INTO {$this->table} (buku_kode, buku_judul, buku_pengarang) VALUES (?, ?, ?)");
-        $query->bind_param('sss', $data['buku_kode'], $data['buku_judul'], $data['buku_pengarang']);
+        $query = $this->db->prepare("INSERT INTO {$this->table} (kategori_id, buku_kode, buku_nama, jumlah, deskripsi, gambar) VALUES(?,?,?,?,?,?)");
+        $query->bind_param('ississ', $data['kategori_id'], $data['buku_kode'], $data['buku_nama'], $data['jumlah'], $data['deskripsi'], $data['gambar']);
         $query->execute();
     }
 
@@ -35,8 +35,8 @@ class BukuModel extends Model
 
     public function updateData($id, $data)
     {
-        $query = $this->db->prepare("UPDATE {$this->table} SET buku_kode = ?, buku_judul = ?, buku_pengarang = ? WHERE buku_id = ?");
-        $query->bind_param('sssi', $data['buku_kode'], $data['buku_judul'], $data['buku_pengarang'], $id);
+        $query = $this->db->prepare("UPDATE {$this->table} SET kategori_id = ?, buku_kode = ?, buku_nama = ?, jumlah = ?, deskripsi = ?, gambar = ? WHERE buku_id = ?");
+        $query->bind_param('ississi', $data['kategori_id'], $data['buku_kode'], $data['buku_nama'], $data['jumlah'], $data['deskripsi'], $data['gambar'], $id);
         $query->execute();
     }
 
