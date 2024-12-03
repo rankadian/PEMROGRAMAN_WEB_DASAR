@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="card-body">
-            Selamat Datang <span style="color: blue;">Evan</span>. Anda login sebagai <span style="color: blue">admin.</span>
+            Selamat Datang <span style="color: blue;">ANJAy</span>. Anda login sebagai <span style="color: blue">admin.</span>
             <br>
             Start creating your amazing application!
         </div>
